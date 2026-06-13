@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Taskify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Taskify App</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="messages">
+      {% for category, message in messages %}
+        <div class="message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<form action="{% if edit_task %}{{ url_for('update', id=edit_task.id) }}{% else %}{{ url_for('add') }}{% endif %}" method="POST">
+    <h2>{{ 'Edit Task' if edit_task else 'Add Task' }}</h2>
+    <input type="text" name="title" placeholder="Title" value="{{ edit_task.title if edit_task else '' }}">
+    <textarea name="description" placeholder="Description">{{ edit_task.description if edit_task else '' }}</textarea>
+    <input type="date" name="due_date" value="{{ edit_task.due_date if edit_task else '' }}">
+    <select name="priority">
+        <option value="" disabled {% if not edit_task %}selected{% endif %}>Priority</option>
+        <option value="Low" {% if edit_task and edit_task.priority == 'Low' %}selected{% endif %}>Low</option>
+        <option value="Med" {% if edit_task and edit_task.priority == 'Med' %}selected{% endif %}>Med</option>
+        <option value="High" {% if edit_task and edit_task.priority == 'High' %}selected{% endif %}>High</option>
+    </select>
+    <button type="submit">{{ 'Update Task' if edit_task else 'Add Task' }}</button>
+    {% if edit_task %}
+        <a class="button secondary" href="{{ url_for('index') }}">Cancel</a>
+    {% endif %}
+</form>
+
+<hr>
+
+<h2>Tasks</h2>
+
+<ul>
+    {% for task in tasks %}
+        <li>
+            <div class="task-header">
+                <strong>{{ task.title }}</strong>
+                <span class="task-meta">{{ task.due_date }} · {{ task.priority }}</span>
+            </div>
+            <p>{{ task.description }}</p>
+            <div class="task-actions">
+                <a class="button small" href="{{ url_for('edit', id=task.id) }}">Edit</a>
+                <form action="{{ url_for('delete', id=task.id) }}" method="POST" class="inline-form">
+                    <button type="submit" class="button small danger" onclick="return confirm('Delete this task?');">Delete</button>
+                </form>
+            </div>
+        </li>
+    {% else %}
+        <li>No tasks yet. Add one above.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

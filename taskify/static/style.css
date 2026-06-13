@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 70%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+input,
+textarea,
+select,
+button {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px 0;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.task-meta {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.task-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    border-radius: 6px;
+    padding: 10px 16px;
+}
+
+.button.secondary {
+    background: #6c757d;
+}
+
+.button.small,
+button.small {
+    padding: 8px 12px;
+    font-size: 0.9em;
+}
+
+.button.danger,
+button.danger {
+    background: #dc3545;
+}
+
+.messages {
+    margin: 20px 0;
+}
+
+.message {
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.message.success {
+    background: #e6ffed;
+    border: 1px solid #98e2a1;
+    color: #1f6f29;
+}
+
+.message.error {
+    background: #ffe6e6;
+    border: 1px solid #e29a9a;
+    color: #7a1515;
+}
